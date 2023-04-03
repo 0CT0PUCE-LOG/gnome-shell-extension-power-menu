@@ -1,0 +1,10 @@
+{
+  "description": "Arrangment of three buttons in the top panel to instantly shutdown/reboot/logout.",
+  "name": "Power Menu",
+  "shell-version": [
+    "43"
+  ],
+  "url": "https://github.com/0CT0PUCE-LOG/gnome-shell-extension-power-menu",
+  "uuid": "power-menu@0ct0puce.com",
+  "version": 1
+}
