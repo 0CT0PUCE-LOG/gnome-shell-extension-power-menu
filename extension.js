@@ -128,7 +128,7 @@ class Extension {
 
 function init(meta) {
     // Load the settings schema
-    mySettings = Gio.Settings.new_with_path("org.gnome.shell.extensions.my-extension");
+    mySettings = Gio.Settings.new_with_path("org.gnome.shell.extensions.power-menu");
 
     // Connect to the settings-changed signal to update the buttons when the settings change
     mySettings.connect("changed::button1-enabled", _updateButtons);
