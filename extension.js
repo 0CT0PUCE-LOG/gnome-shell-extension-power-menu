@@ -128,6 +128,7 @@ class Extension {
 
 function init(meta) {
     // Load the settings schema
+    //problem, path is wrong
     mySettings = new Gio.Settings({
         schema:"org.gnome.shell.extensions.power-menu",
         path:"/org/gnome/shell/extensions/power-menu/"
