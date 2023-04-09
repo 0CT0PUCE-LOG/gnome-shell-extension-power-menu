@@ -8,7 +8,7 @@
  * | |_| | |____   | | | |_| | |    | |__| | |____| |____
  *  \___/ \_____|  |_|  \___/|_|     \____/ \_____|______|
  *
- * LogoutButton is free software: you can redistribute it and/or modify
+ * PowerMenu is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License version 3 as
  * published by the Free Software Foundation.
  *
@@ -16,13 +16,21 @@
 
 const GETTEXT_DOMAIN = 'my-indicator-extension';
 const { GObject, St } = imports.gi;
+
 const Gio = imports.gi.Gio;
-const Me = imports.misc.extensionUtils.getCurrentExtension();
 const ExtensionUtils = imports.misc.extensionUtils;
+const Me = ExtensionUtils.getCurrentExtension();
+
 const Main = imports.ui.main;
 const GLib = imports.gi.GLib;
 const PanelMenu = imports.ui.panelMenu;
 const _ = ExtensionUtils.gettext;
+
+const SCHEMA_NAME = 'org.gnome.shell.extensions.power-menu';
+const DEFAULT_VALUES = {
+    mysetting: false,
+};
+
 
 function getSettings() {
     let GioSSS = Gio.SettingsSchemaSource;
@@ -46,6 +54,20 @@ const Indicator = GObject.registerClass(
             let button;
 
             //log("test_boolean: " + settings.get_boolean("show-logout-button").toString());
+
+            let prefs = ExtensionUtils.getPrefs();
+            prefs.init(SCHEMA_NAME);
+            prefs.set_default_value('mysetting', DEFAULT_VALUES.mysetting);
+
+            let settings = new Gio.Settings({
+                settings_schema: Gio.SettingsSchemaSource.get_default()
+                    .lookup(SCHEMA_NAME, true),
+            });
+
+
+
+
+
 
             button = new St.Bin({
                 style_class: "panel-button",

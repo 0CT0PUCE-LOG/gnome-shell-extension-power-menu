@@ -1,50 +1,45 @@
-const GObject = imports.gi.GObject;
-const Gtk = imports.gi.Gtk;
+const Gio = imports.gi.Gio;
+const GLib = imports.gi.GLib;
+const ExtensionUtils = imports.misc.extensionUtils;
+const Me = ExtensionUtils.getCurrentExtension();
+const Convenience = Me.imports.convenience;
 
-function init () {
+function init() {
+    Convenience.initTranslations();
 }
 
-function buildPrefsWidget () {
-    let widget = new MyPrefsWidget();
-    //widget.show_all();
-    return widget;
+function buildPrefsWidget() {
+    let settings = Convenience.getSettings();
+
+    let prefsWidget = new Gtk.Box({
+        orientation: Gtk.Orientation.VERTICAL,
+        border_width: 10,
+        spacing: 10,
+    });
+
+    let mysettingSwitch = new Gtk.Switch();
+    mysettingSwitch.set_active(settings.get_boolean('mysetting'));
+    mysettingSwitch.connect('notify::active', (switchWidget) => {
+        let active = switchWidget.get_active();
+        settings.set_boolean('mysetting', active);
+    });
+
+    let mysettingLabel = new Gtk.Label({
+        label: _('My Setting'),
+        use_markup: true,
+        xalign: 0,
+    });
+
+    let mysettingRow = new Gtk.Box({
+        orientation: Gtk.Orientation.HORIZONTAL,
+        spacing: 10,
+    });
+    mysettingRow.pack_start(mysettingLabel, false, false, 0);
+    mysettingRow.pack_end(mysettingSwitch, false, false, 0);
+
+    prefsWidget.pack_start(mysettingRow, false, false, 0);
+
+    prefsWidget.show_all();
+
+    return prefsWidget;
 }
-
-const MyPrefsWidget = new GObject.Class({
-    Name: 'My.Prefs.Widget',
-    GTypeName: 'MyPrefsWidget',
-    Extends: Gtk.Box,
-
-    _init: function (params) {
-        this.parent(params);
-        this.margin = 24;
-        this.set_spacing(15);
-        this.set_orientation(Gtk.Orientation.VERTICAL);
-
-        let label = new Gtk.Label({
-            label : "Translated Text2",
-        });
-
-        let spinButton = new Gtk.SpinButton();
-        spinButton.set_sensitive(true);
-        spinButton.set_range(-60, 60);
-        spinButton.set_value(0);
-        spinButton.set_increments(2, 2);
-
-        spinButton.connect('value-changed', function (widget) {
-            log('spinButton value-changed: ' + widget.get_value().toString());
-        });
-
-        /*
-        let hBox = new Gtk.Box();
-        hBox.set_orientation(Gtk.Orientation.HORIZONTAL);
-
-        hBox.pack_start(label, false, false, 0);
-        hBox.pack_end(spinButton, false, false, 0);
-
-         */
-
-        this.append(label);
-        this.append(spinButton);
-    }
-});
