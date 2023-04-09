@@ -42,10 +42,10 @@ const Indicator = GObject.registerClass(
     class Indicator extends PanelMenu.Button {
         _init() {
             super._init(0.0, _('My Shiny Indicator'));
-            let settings = getSettings();
+            //let settings = getSettings();
             let button;
 
-            log("test_boolean: " + settings.get_boolean("show-logout-button").toString());
+            //log("test_boolean: " + settings.get_boolean("show-logout-button").toString());
 
             button = new St.Bin({
                 style_class: "panel-button",
