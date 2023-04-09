@@ -45,7 +45,7 @@ const Indicator = GObject.registerClass(
             let settings = getSettings();
             let button;
 
-            log("test_boolean: " + settings.get_boolean("show-logout-button"));
+            log("test_boolean: " + settings.get_boolean("show-logout-button").toString());
 
             button = new St.Bin({
                 style_class: "panel-button",

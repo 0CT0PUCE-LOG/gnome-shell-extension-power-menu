@@ -5,8 +5,8 @@
 
             <key type="b" name="show-logout-button">
                 <default>true</default>
-                <summary>Show logout button</summary>
-                <description>Show logout button</description>
+                <summary>show-logout-button</summary>
+                <description>show-logout-button</description>
             </key>
 
 </schema>
