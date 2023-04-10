@@ -7,8 +7,8 @@
   "url": "https://github.com/0CT0PUCE-LOG/gnome-shell-extension-power-menu",
   "uuid": "power-menu@0ct0puce.com",
   "version": 1,
-  "preferences-schema": "org.gnome.shell.extensions.power-menu",
-  "schemas": [
-    "schemas/org.gnome.shell.extensions.power-menu.gschema.xml"
+  "settings-schema": "org.gnome.shell.extensions.power-menu",
+  "dependencies": [
+    "gnome-shell-extension-common"
   ]
 }

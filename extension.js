@@ -55,6 +55,9 @@ const Indicator = GObject.registerClass(
 
             //log("test_boolean: " + settings.get_boolean("show-logout-button").toString());
             //start prefs
+
+            GLib.setenv('GSETTINGS_SCHEMA_DIR', Me.dir.get_child('schemas').get_path(), true);
+
             let mysetting = false;
 
             let settings = new Gio.Settings({
