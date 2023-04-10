@@ -61,7 +61,7 @@ const Indicator = GObject.registerClass(
                 schema_id: 'org.gnome.shell.extensions.power-menu',
             });
 
-            settings.connect('changed::mysetting', (settings, key) => {
+            settings.connect('changed::my-setting', (settings, key) => {
                 mysetting = settings.get_boolean(key);
             });
             //end prefs

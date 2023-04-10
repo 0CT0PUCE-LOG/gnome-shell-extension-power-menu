@@ -1,13 +1,10 @@
-<?xml version="1.0" encoding="UTF-8" ?>
-
+<?xml version="1.0" encoding="UTF-8"?>
 <schemalist>
-        <schema id="org.gnome.shell.extensions.power-menu" path="/org/gnome/shell/extensions/power-menu/">
-
-            <key type="b" name="show-logout-button">
-                <default>true</default>
-                <summary>show-logout-button</summary>
-                <description>show-logout-button</description>
-            </key>
-
-</schema>
+    <schema id="org.gnome.shell.extensions.power-menu" path="/org/gnome/shell/extensions/power-menu/">
+        <key name="my-setting" type="b">
+            <summary>My setting</summary>
+            <description>A boolean setting for my extension</description>
+            <default>false</default>
+        </key>
+    </schema>
 </schemalist>
