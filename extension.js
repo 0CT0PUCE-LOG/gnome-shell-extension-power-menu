@@ -141,5 +141,7 @@ class Extension {
 }
 
 function init(meta) {
-    return new Extension(meta.uuid);
+    let extension = new Extension(meta.uuid);
+    ExtensionUtils.initTranslations(GETTEXT_DOMAIN);
+    return extension;
 }
