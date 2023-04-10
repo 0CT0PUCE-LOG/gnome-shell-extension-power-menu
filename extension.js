@@ -14,7 +14,9 @@
  *
  **********************************************************************/
 
-const GETTEXT_DOMAIN = 'my-indicator-extension';
+//const GETTEXT_DOMAIN = 'my-indicator-extension';
+const GETTEXT_DOMAIN = Me.metadata['gettext-domain'];
+
 const { GObject, St } = imports.gi;
 
 const Gio = imports.gi.Gio;

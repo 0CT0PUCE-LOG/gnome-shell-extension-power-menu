@@ -10,5 +10,6 @@
   "settings-schema": "org.gnome.shell.extensions.power-menu",
   "dependencies": [
     "gnome-shell-extension-common"
-  ]
+  ],
+  "gettext-domain": "power-menu"
 }
