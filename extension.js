@@ -14,14 +14,16 @@
  *
  **********************************************************************/
 
+
+const Gio = imports.gi.Gio;
+const ExtensionUtils = imports.misc.extensionUtils;
+const Me = ExtensionUtils.getCurrentExtension();
 //const GETTEXT_DOMAIN = 'my-indicator-extension';
 const GETTEXT_DOMAIN = Me.metadata['gettext-domain'];
 
 const { GObject, St } = imports.gi;
 
-const Gio = imports.gi.Gio;
-const ExtensionUtils = imports.misc.extensionUtils;
-const Me = ExtensionUtils.getCurrentExtension();
+
 
 const Main = imports.ui.main;
 const GLib = imports.gi.GLib;
