@@ -1,5 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <schemalist>
+
+    <enum id="org.gnome.shell.extensions.power-menu.logout-mode">
+        <value value="0" nick="INSTANT"/>
+        <value value="1" nick="POP-UP"/>
+    </enum>
+
     <schema id="org.gnome.shell.extensions.power-menu" path="/org/gnome/shell/extensions/power-menu/">
         <!-- See also: https://docs.gtk.org/glib/gvariant-format-strings.html -->
         <key name="show-logout-button" type="b">
@@ -10,6 +16,14 @@
         </key>
         <key name="show-shutdown-button" type="b">
             <default>true</default>
+        </key>
+
+        <key name="logout-mode"
+             enum="org.gnome.shell.extensions.power-menu.logout-mode">
+            <default>'INSTANT'</default>
+            <summary>Logout Mode.</summary>
+            <description>Sets the position of the extension on the panel.
+                Possible values are: Left end, Left, Center-left, Center-Right, Right, Right end.</description>
         </key>
     </schema>
 </schemalist>

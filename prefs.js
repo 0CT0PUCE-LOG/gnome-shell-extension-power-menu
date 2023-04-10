@@ -29,6 +29,10 @@ function fillPreferencesWindow(window) {
     const row_shutdown = new Adw.ActionRow({ title: 'Show shutdown button' });
     group.add(row_shutdown);
 
+    //test combolist
+    const row_combo_logout = new Adw.ActionRow({ title: 'logout combolist' });
+    group.add(row_combo_logout);
+
     // Create the switch and bind its value to the `show-indicator` key
     const toggle_logout = new Gtk.Switch({
         active: settings.get_boolean ('show-logout-button'),
@@ -42,6 +46,16 @@ function fillPreferencesWindow(window) {
         active: settings.get_boolean ('show-shutdown-button'),
         valign: Gtk.Align.CENTER,
     });
+
+    //test combolist
+    const combo_logout = new Gtk.ComboBoxText();
+    combo_logout.append_text("INSTANT");
+    combo_logout.append_text("POP-UP");
+
+    row_combo_logout.add_suffix(combo_logout);
+
+
+    //setup settings
     settings.bind(
         'show-logout-button',
         toggle_logout,
@@ -59,6 +73,14 @@ function fillPreferencesWindow(window) {
     settings.bind(
         'show-shutdown-button',
         toggle_shutdown,
+        'active',
+        Gio.SettingsBindFlags.DEFAULT
+    );
+
+    //test combolist
+    settings.bind(
+        'logout-combolist',
+        combo_logout,
         'active',
         Gio.SettingsBindFlags.DEFAULT
     );
