@@ -79,7 +79,7 @@ function fillPreferencesWindow(window) {
 
     //test combolist
     settings.bind(
-        'logout-combolist',
+        'logout-mode',
         combo_logout,
         'active',
         Gio.SettingsBindFlags.DEFAULT
