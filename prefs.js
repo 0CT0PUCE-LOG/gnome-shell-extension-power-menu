@@ -1,35 +1,44 @@
-const {Gtk} = imports.gi;
-const ExtensionUtils = imports.misc.extensionUtils;
-const Me = imports.misc.extensionUtils.getCurrentExtension();
+'use strict';
 
-/* prefs initiation
- */
+const { Adw, Gio, Gtk } = imports.gi;
+
+const ExtensionUtils = imports.misc.extensionUtils;
+const Me = ExtensionUtils.getCurrentExtension();
+
+
 function init() {
-    ExtensionUtils.initTranslations();
 }
 
-/* prefs widget
- */
-function buildPrefsWidget() {
+function fillPreferencesWindow(window) {
+    // Use the same GSettings schema as in `extension.js`
+    const settings = ExtensionUtils.getSettings(
+        'org.gnome.shell.extensions.power-menu'
 
-    let settings = ExtensionUtils.getSettings();
+    // Create a preferences page and group
+    const page = new Adw.PreferencesPage();
+    const group = new Adw.PreferencesGroup();
+    page.add(group);
 
-    let builder = new Gtk.Builder();
-    builder.set_translation_domain(Me.metadata['gettext-domain']);
-    //builder.add_from_file(Me.dir.get_child('prefs.ui').get_path());
+    // Create a new preferences row
+    const row = new Adw.ActionRow({ title: 'Show Extension Indicator' });
+    group.add(row);
 
-    //let panelPosition = settings.get_enum('panel-position');
-    //let comboBox = builder.get_object('panelButtonPosition_combobox');
-    let bool = builder.get_enum('my-setting');
-
-    //bool.set_active(panelPosition);
-
-    //comboBox.set_active(panelPosition);
-
-    bool.connect('changed', w => {
-        let value = w.get_active();
-        settings.set_enum('my-setting', value);
+    // Create the switch and bind its value to the `show-indicator` key
+    const toggle = new Gtk.Switch({
+        active: settings.get_boolean ('show-indicator'),
+        valign: Gtk.Align.CENTER,
     });
+    settings.bind(
+        'show-indicator',
+        toggle,
+        'active',
+        Gio.SettingsBindFlags.DEFAULT
+    );
 
-    return builder.get_object('main_prefs');
+    // Add the switch to the row
+    row.add_suffix(toggle);
+    row.activatable_widget = toggle;
+
+    // Add our page to the window
+    window.add(page);
 }
