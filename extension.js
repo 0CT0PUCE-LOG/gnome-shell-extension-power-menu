@@ -81,6 +81,12 @@ const Indicator = GObject.registerClass(
 
 
 
+            //start button
+
+            //test label
+            let testlabel = new St.Label({
+                text: mysettingtest.toString(),
+            });
 
 
             button = new St.Bin({
@@ -103,7 +109,8 @@ const Indicator = GObject.registerClass(
 
             button.connect("button-press-event", forceLogout);
 
-            this.add_child(button);
+            this.add_child(testlabel);
+            //end button
         }
     });
 
