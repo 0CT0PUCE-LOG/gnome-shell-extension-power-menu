@@ -142,6 +142,7 @@ class Extension {
 
 function init(meta) {
     let extension = new Extension(meta.uuid);
+    log('GETTEXT_DOMAIN:', GETTEXT_DOMAIN);
     ExtensionUtils.initTranslations(GETTEXT_DOMAIN);
     return extension;
 }
