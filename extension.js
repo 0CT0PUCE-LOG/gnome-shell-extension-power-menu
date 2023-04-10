@@ -54,16 +54,17 @@ const Indicator = GObject.registerClass(
             let button;
 
             //log("test_boolean: " + settings.get_boolean("show-logout-button").toString());
-
-            let prefs = ExtensionUtils.getPrefs();
-            prefs.init(SCHEMA_NAME);
-            prefs.set_default_value('mysetting', DEFAULT_VALUES.mysetting);
+            //start prefs
+            let mysetting = false;
 
             let settings = new Gio.Settings({
-                settings_schema: Gio.SettingsSchemaSource.get_default()
-                    .lookup(SCHEMA_NAME, true),
+                schema_id: 'org.gnome.shell.extensions.power-menu',
             });
 
+            settings.connect('changed::mysetting', (settings, key) => {
+                mysetting = settings.get_boolean(key);
+            });
+            //end prefs
 
 
 
