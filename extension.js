@@ -27,9 +27,15 @@ const PanelMenu = imports.ui.panelMenu;
 const _ = ExtensionUtils.gettext;
 
 const SCHEMA_NAME = 'org.gnome.shell.extensions.power-menu';
+const schemaDir = Me.dir.get_child('schemas');
+const schemaSource = Gio.SettingsSchemaSource.new_from_directory(schemaDir.get_path(), Gio.SettingsSchemaSource.get_default(), false);
+const schema = schemaSource.lookup(SCHEMA_NAME, true);
+/*
 const DEFAULT_VALUES = {
     mysetting: false,
 };
+
+ */
 
 
 function getSettings() {
@@ -57,10 +63,13 @@ const Indicator = GObject.registerClass(
             //start prefs
 
             let Settings = ExtensionUtils.getSettings();
+            /*
             Settings.connect('changed::panel-position', () => {
                 removeButton();
                 addButton();
             });
+
+             */
 
             /*
             GLib.setenv('GSETTINGS_SCHEMA_DIR', Me.dir.get_child('schemas').get_path(), true);
