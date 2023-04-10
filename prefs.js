@@ -50,14 +50,14 @@ function fillPreferencesWindow(window) {
     );
 
     settings.bind(
-        'show-reboot-button
+        'show-reboot-button',
         toggle_reboot,
         'active',
         Gio.SettingsBindFlags.DEFAULT
     );
 
     settings.bind(
-        'show-shutdown-button
+        'show-shutdown-button',
         toggle_shutdown,
         'active',
         Gio.SettingsBindFlags.DEFAULT
