@@ -65,7 +65,8 @@ const Indicator = GObject.registerClass(
 
             //log("test_boolean: " + settings.get_boolean("show-logout-button").toString());
             //start prefs
-
+            //settings v1
+            /*
             let Settings = ExtensionUtils.getSettings();
             /*
             Settings.connect('changed::panel-position', () => {
@@ -88,15 +89,44 @@ const Indicator = GObject.registerClass(
                 mysetting = settings.get_boolean(key);
             });
 
-             */
+
             let mysettingtest = Settings.get_enum('my-setting');
+            */
+            //settings v2
+            this.settings = ExtensionUtils.getSettings(
+                'org.gnome.shell.extensions.power-menu');
+            let indicatorName = `${Me.metadata.name} Indicator`;
+
+            // Create a panel button
+            this._indicator = new PanelMenu.Button(0.0, indicatorName, false);
+
+            // Add an icon
+            let icon = new St.Icon({
+                gicon: new Gio.ThemedIcon({name: 'face-laugh-symbolic'}),
+                style_class: 'system-status-icon'
+            });
+            this._indicator.add_child(icon);
+
+            // Bind our indicator visibility to the GSettings value
+            //
+            // NOTE: Binding properties only works with GProperties (properties
+            // registered on a GObject class), not native JavaScript properties
+            this.settings.bind(
+                'show-indicator',
+                this._indicator,
+                'visible',
+                Gio.SettingsBindFlags.DEFAULT
+            );
+
+            Main.panel.addToStatusArea(indicatorName, this._indicator);
             //end prefs
 
 
-
+            //---------------------------OLD VERSION----------------------------------
             //start button
 
             //test label
+            /*
             let testlabel = new St.Label({
                 text: mysettingtest.toString(),
             });
@@ -124,6 +154,8 @@ const Indicator = GObject.registerClass(
 
             this.add_child(testlabel);
             //end button
+
+             */
         }
     });
 
