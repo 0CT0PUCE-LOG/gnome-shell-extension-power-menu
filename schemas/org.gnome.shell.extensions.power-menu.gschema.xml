@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <schemalist>
     <schema id="org.gnome.shell.extensions.power-menu" path="/org/gnome/shell/extensions/power-menu/">
-        <key name="my-setting" type="b">
+        <key name="my-setting" enum="org.gnome.shell.extensions.power-menu.my-setting" type="b">
             <summary>My setting</summary>
             <description>A boolean setting for my extension</description>
             <default>false</default>

@@ -56,6 +56,13 @@ const Indicator = GObject.registerClass(
             //log("test_boolean: " + settings.get_boolean("show-logout-button").toString());
             //start prefs
 
+            let Settings = ExtensionUtils.getSettings();
+            Settings.connect('changed::panel-position', () => {
+                removeButton();
+                addButton();
+            });
+
+            /*
             GLib.setenv('GSETTINGS_SCHEMA_DIR', Me.dir.get_child('schemas').get_path(), true);
 
             let mysetting = false;
@@ -67,6 +74,9 @@ const Indicator = GObject.registerClass(
             settings.connect('changed::my-setting', (settings, key) => {
                 mysetting = settings.get_boolean(key);
             });
+
+             */
+            let mysettingtest = Settings.get_enum('my-setting');
             //end prefs
 
 
